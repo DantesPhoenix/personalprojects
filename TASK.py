@@ -1,25 +1,24 @@
-import random
-import string
+def calculate_tax(income):
+    if income <= 12500:
+        tax_amount = 0
+    elif income <= 14585:
+        tax_amount = (income - 12500) * 0.19
+    elif income <= 25158:
+        tax_amount = (income - 14585) * 0.20 + (14585 - 12500) * 0.19
+    elif income <= 43430:
+        tax_amount = (income - 25158) * 0.21 + (25158 - 14585) * 0.20 + (14585 - 12500) * 0.19
+    elif income <= 150000:
+        tax_amount = (income - 43430) * 0.41 + (43430 - 25158) * 0.21 + (25158 - 14585) * 0.20 + (14585 - 12500) * 0.19
+    else:
+        tax_amount = (income - 150000) * 0.46 + (150000 - 43430) * 0.41 + (43430 - 25158) * 0.21 + (25158 - 14585) * 0.20 + (14585 - 12500) * 0.19
 
-def get_password_length():
-    while True:
-        try:
-            length = int(input("Enter the desired length of the password: "))
-            if length <= 0:
-                print("Please enter a positive integer.")
-            else:
-                return length
-        except ValueError:
-            print("Please enter a valid integer.")
+    return tax_amount
 
-def generate_password(length):
-    characters = string.ascii_letters + string.digits + string.punctuation
-    password = ''.join(random.choice(characters) for _ in range(length))
-    return password
+# Get user input for income
+income = float(input("Enter your income: "))
 
-# Get the desired password length from the user
-length = get_password_length()
+# Calculate the tax amount
+tax_amount = calculate_tax(income)
 
-# Generate the password
-password = generate_password(length)
-print("Generated password:", password)
+# Print the tax amount
+print("Your tax amount is:", tax_amount)
