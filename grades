@@ -1,0 +1,66 @@
+def getinput():
+    name = [""]* 2
+    score = [0]* 2
+
+    for i in range(0, 2):
+        print("enter name")
+        name[i] = input()
+
+        print("enter ", name[i],"score")
+        score[i] = int(input())
+
+        while score[i] < 1 or score[i] > 110:
+            print("enter a valid score")
+            score[i] = int(input())
+
+    return name, score
+
+
+def getpercent(score):
+
+    percent = [0]*2
+
+
+    for i in range(0,2):
+        percent[i] = round(score[i] / 110 * 100, 2)
+
+
+
+    return percent
+
+def getgrade(percent):
+
+    grade = [""]*2
+
+    for i in range(0, 2):
+
+        if percent[i] > 80:
+            grade[i] = ("A")
+
+        elif percent[i] > 70:
+            grade[i] = ("B")
+
+        elif percent[i] > 60:
+            grade[i] = ("C")
+
+        elif percent[i] > 60:
+            grade[i] = ("C")
+
+        elif percent[i] > 50:
+            grade[i] = ("D")
+
+        elif percent[i] <= 50:
+            grade[i] = ("B")
+
+    return grade
+
+def display(name, percent, grade, score):
+
+    for i in range(0, 2):
+        print(name[i], percent[i], grade[i], score[i])
+
+
+array_name, array_score = getinput()
+array_percent = getpercent(array_score)
+array_grade = getgrade(array_percent)
+display(array_name, array_percent, array_grade, array_score)
