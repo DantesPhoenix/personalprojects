@@ -1,0 +1,9 @@
+def encrypt(message):
+    encrypted_message = ""
+    for char in message:
+        encrypted_message += chr(ord(char) + 3)
+    return encrypted_message
+print("Enter words you want encrypted:")
+words = input()
+encrypted_text = encrypt(words)
+print("Encrypted message:", encrypted_text)
