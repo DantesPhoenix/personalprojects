@@ -1,0 +1,69 @@
+from dataclasses import dataclass
+
+@dataclass
+class member_class:
+    firstName : str
+    lastName : str
+    CAT : str
+    PASS : str
+
+
+def getUserInput():
+
+    #asks user for first name
+    print("Enter First Name: ")
+    fName = input()
+
+    #asks user for last name
+    print("Enter Last Name: ")
+    lName = input()
+
+    #asks user for category
+    print("Enter a Category (Senior, Adult or Junior):")
+    Category = input()
+
+    #checks category is valid using while loop
+    while Category not in ["Senior","senior", "adult", "Adult", "junior", "Junior"]:
+        print("Not valid input enter again:")
+        Category = input()
+
+
+    #asks user for password
+    print("Enter Password")
+    password = input()
+
+    A = 1
+    while A == 1:
+
+        if ord(password[0]) >= 65 and ord(password[0]) <= 90 and ord(password[len(password)-1]) >=35 and ord(password[len(password)-1]) <=37:
+            A = 0
+        else:
+            print("Enter a valid password")
+            password = input()
+
+        return fName, lName, Category, password
+
+def readata():
+
+    file = open("members.txt", "r")
+    memberdata = file.read()
+    splitmember = memberdata.split("\n")
+
+    memberdataclass = [member_class(None,None,None,None) for _ in range(len(splitmember))]
+
+    for i in range(0, len(memberdataclass)):
+        array = splitmember[i].split(",")
+        memberdataclass[i].firstName = array[0]
+        memberdataclass[i].lastName = array[1]
+        memberdataclass[i].CAT = array[2]
+        memberdataclass[i].PASS = array[3]
+    file.close()
+
+    print("Our members are:")
+    for j in range(len(memberdataclass)):
+        print(memberdataclass[j].firstName, memberdataclass[j].lastName,memberdataclass[j].CAT)
+
+#firstName, lastName, Cat, Pass = getUserInput()
+readata()
+
+getUserInput()
