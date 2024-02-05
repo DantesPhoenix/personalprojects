@@ -1,7 +1,9 @@
+#get users input
 def getinput():
     name = [""]* 2
     score = [0]* 2
 
+    #start loop to get name and scores of users 
     for i in range(0, 2):
         print("enter name")
         name[i] = input()
@@ -9,18 +11,19 @@ def getinput():
         print("enter ", name[i],"score")
         score[i] = int(input())
 
+        #range check    
         while score[i] < 1 or score[i] > 110:
             print("enter a valid score")
             score[i] = int(input())
 
     return name, score
 
-
+#function calculating percentage 
 def getpercent(score):
 
     percent = [0]*2
 
-
+    #calculate average grade
     for i in range(0,2):
         percent[i] = round(score[i] / 110 * 100, 2)
 
@@ -28,6 +31,7 @@ def getpercent(score):
 
     return percent
 
+#calculate grade
 def getgrade(percent):
 
     grade = [""]*2
@@ -59,7 +63,7 @@ def display(name, percent, grade, score):
     for i in range(0, 2):
         print(name[i], percent[i], grade[i], score[i])
 
-
+#main programm
 array_name, array_score = getinput()
 array_percent = getpercent(array_score)
 array_grade = getgrade(array_percent)
